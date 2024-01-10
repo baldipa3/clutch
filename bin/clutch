@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require './lib/game_interface'
+
+game_interface = GameInterface.new
+
+game_interface.start
