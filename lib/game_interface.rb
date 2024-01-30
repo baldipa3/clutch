@@ -1,9 +1,10 @@
 require 'pry'
+require_relative './game'
+require_relative './statistics'
+require_relative './credits'
 
 class GameInterface
   def start
-    # @statistics = Statistics.new
-
     print_options
 
     select_option
@@ -19,7 +20,9 @@ class GameInterface
     puts "0 - EXIT"
   end
 
-  def select_option
+  def select_option(attempts = 0)
+    return if attempts >= MAX_ATTEMPTS
+
     option = gets.chomp
 
     case sanitize_option(option)
@@ -34,24 +37,30 @@ class GameInterface
     end
 
     rescue ArgumentError
+      attempts += 1
       puts "Selected option is invalid, valid options are 0, 1, 2, 3"
+      puts "You have #{MAX_ATTEMPTS - attempts} attempts left"
       
-      select_option
+      select_option(attempts)
+  end
+  
+  private
+
+  def main_menu
+    self.start
   end
 
   def game
-    Game.play(@statistics)
+    Game.play { main_menu }
   end
 
   def statistics
-    @statistics.show
+    Statistics.show
   end
 
   def credits
-    Credit.show
+    Credits.show
   end
-
-  private
 
   def sanitize_option(option)
     transformed_option = Integer(option)
@@ -60,6 +69,8 @@ class GameInterface
       raise ArgumentError
     end
 
-    option
+    transformed_option
   end
+
+  MAX_ATTEMPTS = 3
 end
