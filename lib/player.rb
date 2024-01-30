@@ -24,4 +24,10 @@ class Player
 
   def pass_turn_or_select_any_action
   end
+
+  private
+  
+  def valid?
+    !name.nil? || name == ""
+  end
 end

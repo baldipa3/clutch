@@ -1,36 +1,36 @@
 class Deck
-  attr_reader :cards
+  class << self
+    def shuffle!
+      CARDS.shuffle!
+    end
 
-  def initialize
-    @cards = CARDS
+    def cards
+      CARDS
+    end
+
+    private
+
+    CARDS = [
+      ["10", "Clubs"],
+      ["10", "Diamonds"],
+      ["10", "Hearts"],
+      ["10", "Spades"],
+      ["J", "Clubs"],
+      ["J", "Diamonds"],
+      ["J", "Hearts"],
+      ["J", "Spades"],
+      ["Q", "Clubs"],
+      ["Q", "Diamonds"],
+      ["Q", "Hearts"],
+      ["Q", "Spades"],
+      ["K", "Clubs"],
+      ["K", "Diamonds"],
+      ["K", "Hearts"],
+      ["K", "Spades"],
+      ["A", "Clubs"],
+      ["A", "Diamonds"],
+      ["A", "Hearts"],
+      ["A", "Spades"]
+    ]
   end
-
-  def shuffle!
-    @cards.shuffle!
-  end
-
-  private
-
-  CARDS = [
-    ["10", "Clubs"],
-    ["10", "Diamonds"],
-    ["10", "Hearts"],
-    ["10", "Spades"],
-    ["J", "Clubs"],
-    ["J", "Diamonds"],
-    ["J", "Hearts"],
-    ["J", "Spades"],
-    ["Q", "Clubs"],
-    ["Q", "Diamonds"],
-    ["Q", "Hearts"],
-    ["Q", "Spades"],
-    ["K", "Clubs"],
-    ["K", "Diamonds"],
-    ["K", "Hearts"],
-    ["K", "Spades"],
-    ["A", "Clubs"],
-    ["A", "Diamonds"],
-    ["A", "Hearts"],
-    ["A", "Spades"]
-  ]
 end

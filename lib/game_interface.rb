@@ -46,12 +46,12 @@ class GameInterface
   
   private
 
-  def main_menu
-    self.start
-  end
+  # def main_menu
+  #   self.start
+  # end
 
   def game
-    Game.play { main_menu }
+    Game.play
   end
 
   def statistics

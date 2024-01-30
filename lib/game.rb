@@ -1,5 +1,5 @@
-
 require_relative './player'
+require_relative './deck'
 
 class Game
   class << self
@@ -7,12 +7,7 @@ class Game
   
     def play
       @player_1, @player_2 = set_players
-  binding.pry    
-      # yield unless set_players
-
-
-      # - ESTA MAL llamando 2 veces set_players
-      deck.shuffle!
+      @deck = Deck.shuffle!
     end
   
     private
@@ -20,6 +15,7 @@ class Game
     def set_players
       p_1 = Player.new
       p_2 = Player.new
+      
       register_names!(p_1, p_2)
 
       [p_1, p_2]
@@ -36,16 +32,25 @@ class Game
       puts "Confirm names? (Y/N)"
       puts "-" * 72
 
-      case confirmed_names
+      case confirm_names
       when "Y"
-        p_1.name = name_1
-        p_2.name = name_2
+        p_1.name = sanitize_name(name_1, "Player 1")
+        p_2.name = sanitize_name(name_2, "Player 2")
       else
         return
       end
     end
+
+    def sanitize_name(name, player)
+      while name.empty? do
+        puts "#{player} name can't be empty, please add a new name"
+        name = gets.chomp
+      end
+
+      name
+    end
   
-    def confirmed_names
+    def confirm_names
       loop do
         confirmation = gets.chomp.capitalize
     
