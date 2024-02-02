@@ -5,9 +5,13 @@ class Game
   class << self
     attr_accessor :player_1, :player_2, :deck
   
-    def play
+    def setup
       @player_1, @player_2 = set_players
       @deck = Deck.shuffle!
+    end
+
+    def play
+      print_hand
     end
   
     private

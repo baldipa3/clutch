@@ -19,7 +19,7 @@ RSpec.describe GameInterface do
       let(:option) { "1" }
 
       it 'starts the game' do
-        expect(Game).to receive(:play)
+        expect(Game).to receive(:setup)
 
         game_interface.select_option
       end

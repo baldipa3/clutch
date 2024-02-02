@@ -51,7 +51,7 @@ class GameInterface
   # end
 
   def game
-    Game.play
+    Game.setup
   end
 
   def statistics
